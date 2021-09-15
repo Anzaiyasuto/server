@@ -3,7 +3,6 @@ import math
 app = Flask(__name__)
 file_path = "./sensor_data.csv"
 port_num = 18011
-flag = ['vacant', 'occupied'] #flag = 0 -> vacant | flag = 1 -> occupied 
 state = ""
 
 @app.route('/', methods=['GET'])
@@ -12,6 +11,7 @@ def get_html():
 
 @app.route('/lux', methods=['POST'])
 def update_lux():
+    flag = ['vacant', 'occupied'] #flag = 0 -> vacant | flag = 1 -> occupied 
     time = request.form["time"]
     lux = request.form["lux"]
     lux = str(lux)
@@ -19,7 +19,7 @@ def update_lux():
     #print(type(lux))
     #print(1)
 
-    #temp = ''
+    temp = ''
     alpha = ''
     beta = ''
 
@@ -35,15 +35,21 @@ def update_lux():
         print(e)
     finally:
         f.close()
-    print(" beta " + beta)
-    print(type(beta))
+    #print(" beta " + beta)
+    #print(type(beta))
     beta = float(beta)
-    print(type(beta))
-    print(lux-beta)
+    #print(type(beta))
+    
+    #print(lux-beta)
     #print("temp " + temp )
+    
+    if (lux>400) or (math.fabs(lux-beta)>50):
+        temp = flag[1]
+    else:
+        temp = flag[0]
     try:
         f = open(file_path, 'w')
-        f.write(time + "," + str(lux))
+        f.write(time + "," + temp)
         return "succeeded to write"
     except Exception as e:
         print(e)
