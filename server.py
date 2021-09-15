@@ -19,7 +19,7 @@ def update_lux():
     #print(type(lux))
     #print(1)
 
-    temp = ''
+    #temp = ''
     alpha = ''
     beta = ''
 
@@ -29,15 +29,18 @@ def update_lux():
             alpha = row
             #print(alpha)
             #print(type(alpha)) ->str
-            alpha = alpha.split(',')
-            beta = alpha[1]
-        temp = beta
+        alpha = alpha.split(',')
+        beta = alpha[1]
     except Exception as e:
         print(e)
     finally:
         f.close()
     print(" beta " + beta)
-    print("temp " + temp )
+    print(type(beta))
+    beta = float(beta)
+    print(type(beta))
+    print(lux-beta)
+    #print("temp " + temp )
     try:
         f = open(file_path, 'w')
         f.write(time + "," + str(lux))
