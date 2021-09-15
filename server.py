@@ -19,7 +19,19 @@ def update_lux():
     print(type(lux))
     print(1)
 
-    
+    temp = 0
+
+    try:
+        f = open(file_path, 'r')
+        for row in f:
+            lux = row
+            print(lux)
+            print(type(lux))
+        except: Exception as e:
+            print(e)
+        finally:
+            f.close()
+    print("temp " + temp )
     try:
         f = open(file_path, 'w')
         f.write(time + "," + str(lux))
