@@ -46,7 +46,7 @@ def update_lux():
     #print(type(theta))
     #print(type(delta))
     #print("debug")
-    if(abs(lux-theta) < 150):
+    if(abs(lux-theta) < 30):
         temp = delta
     else:
         if(delta == flag[0]):
@@ -82,13 +82,13 @@ def set_remind():
     print(text)
     PORT = 18011
     BUFFER_SIZE = 1024
-
+    """
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect(('192.168.0.8', PORT))
         print(text.encode())
         s.send(text.encode())
         print(s.recv(BUFFER_SIZE).decode())
-
+    """
     return render_template('./index.html')
 
 if __name__ == '__main__':
@@ -99,7 +99,7 @@ if __name__ == '__main__':
 class Websocket_Server():
 
     def __init__(self, host, port):
-        self.server = WebsocketServer(port, host=host, loglevel=logging.DEBUG)
+        self.sever = WebsocketServer(port, host=host, loglevel=logging.DEBUG)
 
     # クライアント接続時に呼ばれる関数
     def new_client(self, client, server):
