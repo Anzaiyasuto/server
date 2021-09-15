@@ -22,7 +22,7 @@ def update_lux():
     
     try:
         f = open(file_path, 'w')
-        f.write(time + "," + lux)
+        f.write(time + "," + str(lux))
         return "succeeded to write"
     except Exception as e:
         print(e)
