@@ -15,7 +15,7 @@ def update_lux():
     time = request.form["time"]
     lux = request.form["lux"]
     lux = float(lux)
-    print(type(lux[0]))
+    print(type(lux))
 
 
     
