@@ -38,7 +38,7 @@ def update_lux():
         f.close()
     
     print("debug")
-    if(math.fabs(lux-beta) < 50):
+    if(math.fabs(lux-theta) < 50):
         temp = delta
     else:
         if(theta == flag[0]):
