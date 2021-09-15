@@ -2,9 +2,11 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 file_path = "./sensor_data.csv"
 port_num = 18011
-
+flag = 0 #flag = 0 -> vacant | flag = 1 -> occupied 
+nowLux = 0
 @app.route('/', methods=['GET'])
 def get_html():
+    flag=0
     return render_template('./index.html')
 
 @app.route('/lux', methods=['POST'])
@@ -32,7 +34,7 @@ def get_lux():
         print(e)
     finally:
         f.close()
-        return lux
+        return "1"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port = port_num)
