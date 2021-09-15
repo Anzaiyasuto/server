@@ -3,7 +3,7 @@ app = Flask(__name__)
 file_path = "./sensor_data.csv"
 port_num = 18011
 flag = 0 #flag = 0 -> vacant | flag = 1 -> occupied 
-
+alpha = 0
 @app.route('/', methods=['GET'])
 def get_html():
     return render_template('./index.html')
@@ -12,7 +12,9 @@ def get_html():
 def update_lux():
     time = request.form["time"]
     lux = request.form["lux"]
-    print(type(lux[0]))
+    print(type(lux[0])) 
+    alpha = float(lux[0])
+    print(type(alpha))
     try:
         f = open(file_path, 'w')
         f.write(time + "," + lux)
