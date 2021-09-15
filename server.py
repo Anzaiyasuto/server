@@ -1,9 +1,10 @@
 from flask import Flask, request, render_template
+import math
 app = Flask(__name__)
 file_path = "./sensor_data.csv"
 port_num = 18011
-flag = 0 #flag = 0 -> vacant | flag = 1 -> occupied 
-nowLux = 0
+flag = ["vacant", "occupied"] #flag = 0 -> vacant | flag = 1 -> occupied 
+beforeLux = 0.0
 @app.route('/', methods=['GET'])
 def get_html():
     flag=0
@@ -13,10 +14,17 @@ def get_html():
 def update_lux():
     time = request.form["time"]
     lux = request.form["lux"]
+    lux[0] = float(lux[0])
+    
+    if (math.fabs(lux[0]-beforeLux) > 20)  and (math.fabs(lux[0]-beforeLux) < 800):
+        state = flag[1]
+    else:
+        state = flag[0]
 
+    beforeLux = lux[0]
     try:
         f = open(file_path, 'w')
-        f.write(time + "," + lux)
+        f.write(time + "," + state)
         return "succeeded to write"
     except Exception as e:
         print(e)
@@ -34,7 +42,7 @@ def get_lux():
         print(e)
     finally:
         f.close()
-        return "1"
+        return lux
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port = port_num)
