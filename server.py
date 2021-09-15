@@ -12,7 +12,7 @@ def get_html():
 def update_lux():
     time = request.form["time"]
     lux = request.form["lux"]
-
+    print(type(lux[0]))
     try:
         f = open(file_path, 'w')
         f.write(time + "," + lux)
