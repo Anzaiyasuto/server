@@ -36,11 +36,11 @@ def update_lux():
         print(e)
     finally:
         f.close()
-    print(type(alpha))
-    print(type(beta))
-    print(type(theta))
-    print(type(delta))
-    print("debug")
+    #print(type(alpha))
+    #print(type(beta))
+    #print(type(theta))
+    #print(type(delta))
+    #print("debug")
     if(abs(lux-theta) < 50):
         temp = delta
     else:
