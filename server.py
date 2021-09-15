@@ -24,10 +24,10 @@ def update_lux():
     try:
         f = open(file_path, 'r')
         for row in f:
-            lux = row
-            print(lux)
-            print(type(lux))
-        temp = lux
+            alpha = row
+            print(alpha)
+            print(type(alpha))
+        temp = alpha
     except Exception as e:
         print(e)
     finally:
