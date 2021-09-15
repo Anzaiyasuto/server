@@ -73,7 +73,7 @@ def get_lux():
         f.close()
         return lux
 
-@app.route('/remind', methods=["POST"])
+#@app.route('/remind', methods=["POST"])
 
 
 if __name__ == '__main__':
