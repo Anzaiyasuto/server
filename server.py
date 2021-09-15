@@ -38,7 +38,7 @@ def update_lux():
         f.close()
     print('beta ' + beta)
     print('theta ' + theta)
-    print('lux ' + lux)
+    print(lux)
     #print(" beta " + beta)
     #print(type(beta))
     beta = float(beta)
