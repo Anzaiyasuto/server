@@ -9,17 +9,63 @@
                 target.innerHTML = `<h2>${sensorData}</h2>`
             }
         </script>
+        <!--
+
+        <script type="text/javascript">
+            function reminder() {
+            
+                var form = document.createElement("form");
+                form.setAttribute("action", "/remind");
+                form.setAttribute("method", "post");
+                form.setAttribute("target", "hiddeniframe");
+                form.style.display = "none";
+                document.body.appendChild(form);
+
+                var input;
+                input = document.createElement("input")
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", "firstlen");
+                input.setAttribute("value", "EMERGENCY!!");
+                form.appendChild(input);
+
+                input = document.createElement("input")
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", "secondlen");
+                input.setAttribute("value", "Hurry! Come on!");
+                form.appendChild(input);
+
+                form.submit();
+                
+            }
+        </script>
+        -->
+        
     </head>
     <body onload="updateLux('/lux', 'data')">
         <h1>トイレモニター</h1>
 
         <center>
             <div id="data">test</div>
-            <input type="button" value="更新" onclick="updateLux('/lux', 'data')">
-        </center><br>
+            <input type="button" value="更新" onclick="updateLux('/lux', 'data')"><br>
+        </center>
         <center>
             <div id="alpha">test2</div>
-            <input type="button" value="催促" onclick="reminder('/lux', 'alpha')">
+            <form action="/remind" method="POST">
+            <input type="text"><input type="submit" value="催促"><br>
+            <script>
+                $(function() {
+                
+                    ws = new WebSocket("ws://192.168.0.8:9001/");
+                    $('input[type="submit"]').on("click", function(){
+                        var text = $('input[type="text"]').val() ;
+                        ws.send(text);
+                        $('input[type="text"]').val("");
+                    });
+                });
+                
+            </script>
+            </form>
+            
         </center>
     </body>
 </html>
