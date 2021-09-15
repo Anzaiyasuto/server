@@ -14,43 +14,32 @@ def update_lux():
     flag = ['vacant', 'occupied'] #flag = 0 -> vacant | flag = 1 -> occupied 
     time = request.form["time"]
     lux = request.form["lux"]
-    print(type(lux))
-    
-    lux = str(lux)
-    lux = float(lux)
     #print(type(lux))
-    #print(1)
+    
+    lux = float(lux)
 
-    temp = ''
-    alpha = ''
-    beta = ''
-    theta = ''
+    alpha = None
+    beta = None
+    theta = None #str lux
+    delta = None #occupied or vacant
+    ganma = None #float lux
+    temp = None
     try:
         f = open(file_path, 'r')
         for row in f:
             alpha = row
-            #print(alpha)
-            #print(type(alpha)) ->str
-        alpha = alpha.split(',')
-        beta = alpha[1]
-        theta = alpha[2]
+        beta = alpha.split(',')
+        theta = beta[1]
+        delta = beta[2]
+        ganma = float(theta)
     except Exception as e:
         print(e)
     finally:
         f.close()
-    print('beta ' + beta)
-    print('theta ' + theta)
-    print(lux)
-    #print(" beta " + beta)
-    #print(type(beta))
-    #beta = float(beta)
-    #print(type(beta))
     
-    #print(lux-beta)
-    #print("temp " + temp )
     print("debug")
     if(math.fabs(lux-beta) < 50):
-        temp = theta
+        temp = delta
     else:
         if(theta == flag[0]):
             temp = flag[1]
@@ -59,7 +48,7 @@ def update_lux():
 
     try:
         f = open(file_path, 'w')
-        f.write(time + "," + lux + "," + temp)
+        f.write(time + "," + str(lux) + "," + temp)
         return "succeeded to write"
     except Exception as e:
         print(e)
