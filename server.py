@@ -27,7 +27,7 @@ def update_lux():
             lux = row
             print(lux)
             print(type(lux))
-        except: Exception as e:
+        except Exception as e:
             print(e)
         finally:
             f.close()
