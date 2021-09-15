@@ -16,22 +16,27 @@ def update_lux():
     lux = request.form["lux"]
     lux = str(lux)
     lux = float(lux)
-    print(type(lux))
-    print(1)
+    #print(type(lux))
+    #print(1)
 
-    temp = 0
+    temp = ''
+    alpha = ''
+    beta = ''
 
     try:
         f = open(file_path, 'r')
         for row in f:
             alpha = row
-            print(alpha)
-            print(type(alpha))
-        temp = alpha
+            #print(alpha)
+            #print(type(alpha)) ->str
+            alpha = alpha.split(',')
+            beta = alpha[1]
+        temp = beta
     except Exception as e:
         print(e)
     finally:
         f.close()
+    print(" beta " + beta)
     print("temp " + temp )
     try:
         f = open(file_path, 'w')
