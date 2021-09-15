@@ -78,7 +78,7 @@ def get_lux():
 
 @app.route('/remind', methods=["POST"])
 def set_remind():
-    text = request.form["message"]
+    text = request.form["text"]
     print(text)
     PORT = 18011
     BUFFER_SIZE = 1024
