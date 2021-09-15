@@ -22,7 +22,7 @@ def update_lux():
     temp = ''
     alpha = ''
     beta = ''
-
+    theta = ''
     try:
         f = open(file_path, 'r')
         for row in f:
@@ -31,6 +31,7 @@ def update_lux():
             #print(type(alpha)) ->str
         alpha = alpha.split(',')
         beta = alpha[1]
+        theta = alpha[2]
     except Exception as e:
         print(e)
     finally:
@@ -43,13 +44,17 @@ def update_lux():
     #print(lux-beta)
     #print("temp " + temp )
     
-    if (lux>400) or (math.fabs(lux-beta)>50):
-        temp = flag[1]
+    if(math.fabs(lux-beta) < 50):
+        temp = theta
     else:
-        temp = flag[0]
+        if(theta == flag[0]):
+            temp = flag[1]
+        else:
+            temp = flag[0]    
+
     try:
         f = open(file_path, 'w')
-        f.write(time + "," + temp)
+        f.write(time + "," + lux + "," + temp)
         return "succeeded to write"
     except Exception as e:
         print(e)
