@@ -75,6 +75,8 @@ def get_lux():
 
 @app.route('/remind', methods=["POST"])
 def set_remind():
+    text = request.form["message"]
+    print(text)
     return render_template('./index.html')
 
 if __name__ == '__main__':

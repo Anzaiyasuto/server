@@ -51,19 +51,8 @@
         <center>
             <div id="alpha">test2</div>
             <form action="/remind" method="POST">
-            <input type="text"><input type="submit" value="催促"><br>
-            <script>
-                $(function() {
-                
-                    ws = new WebSocket("ws://192.168.0.8:9001/");
-                    $('input[type="submit"]').on("click", function(){
-                        var text = $('input[type="text"]').val() ;
-                        ws.send(text);
-                        $('input[type="text"]').val("");
-                    });
-                });
-                
-            </script>
+            <input type="text" name="message"><input type="submit" value="催促"><br>
+
             </form>
             
         </center>
