@@ -29,9 +29,9 @@ def update_lux():
         for row in f:
             alpha = row
         beta = alpha.split(',')
-        theta = beta[1]
+        theta = float(beta[1])
         delta = beta[2]
-        ganma = float(theta)
+
     except Exception as e:
         print(e)
     finally:
@@ -40,12 +40,11 @@ def update_lux():
     print(type(beta))
     print(type(theta))
     print(type(delta))
-    print(type(ganma))
     print("debug")
-    if(math.fabs(lux-theta) < 50):
+    if(abs(lux-theta) < 50):
         temp = delta
     else:
-        if(theta == flag[0]):
+        if(delta == flag[0]):
             temp = flag[1]
         else:
             temp = flag[0]    
