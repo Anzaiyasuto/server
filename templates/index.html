@@ -51,7 +51,7 @@
             setTimeout(function(){
                 // サーバーへメッセージ送信
                 let formElements = document.forms.ahaha;
-                ws.send(formElements.message.value);
+                ws.send(formElements.text.value);
             }, 6000)
         })
         </script>
@@ -66,7 +66,7 @@
         <center>
             <div id="alpha">test2</div>
             <form name="ahaha" action="/remind" method="POST">
-            <input type="text" name="message"><input type="submit" value="催促"><br>
+            <input type="text" name="text" value="hurry up!"><input type="submit" value="催促"><br>
 
             </form>
             
