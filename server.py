@@ -36,6 +36,9 @@ def update_lux():
         print(e)
     finally:
         f.close()
+    print('beta ' + beta)
+    print('theta ' + theta)
+    print('lux ' + lux)
     #print(" beta " + beta)
     #print(type(beta))
     beta = float(beta)
@@ -43,7 +46,7 @@ def update_lux():
     
     #print(lux-beta)
     #print("temp " + temp )
-    
+    print("debug")
     if(math.fabs(lux-beta) < 50):
         temp = theta
     else:
