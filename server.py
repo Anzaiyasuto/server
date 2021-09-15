@@ -5,8 +5,7 @@ file_path = "./sensor_data.csv"
 port_num = 18011
 flag = ['vacant', 'occupied'] #flag = 0 -> vacant | flag = 1 -> occupied 
 state = ""
-alphaLux = 0
-betaLux = 0
+
 @app.route('/', methods=['GET'])
 def get_html():
     return render_template('./index.html')
@@ -17,6 +16,7 @@ def update_lux():
     lux = request.form["lux"]
     #print(type(lux[0])) 
     alphaLux = float(lux[0])
+
     #print(type(alphaLux))
 
     #judgement flag
@@ -24,7 +24,9 @@ def update_lux():
         state = flag[1]
     else:
         state = flag[0]
+    
     betaLux = alphaLux
+    
     try:
         f = open(file_path, 'w')
         f.write(time + "," + state)
