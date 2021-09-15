@@ -2,6 +2,9 @@ from flask import Flask, request, render_template
 from websocket_server import WebsocketServer
 import logging
 import math
+import serial
+import socket
+
 app = Flask(__name__)
 file_path = "./sensor_data.csv"
 port_num = 18011
@@ -77,6 +80,32 @@ def get_lux():
 def set_remind():
     text = request.form["message"]
     print(text)
+    ip1 = '192.168.0.8'
+    port1 = 8765
+    server1 = (ip1, port1)
+
+    socket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket1.connect(server1)
+
+    line = ''
+    while text != 'exactlly':
+        # 標準入力からデータを取得
+        print('偶数の数値を入力して下さい')
+        line = text + '\r\n'
+    
+        # サーバに送信
+        socket1.send(line.encode("UTF-8"))
+    
+        # サーバから受信
+        data1 = socket1.recv(4096).decode()
+    
+        # サーバから受信したデータを出力
+        print('サーバーからの回答: ' + str(data1))
+        return render_template('./index.html')
+
+    socket1.close()
+    print('クライアント側終了です')
+
     return render_template('./index.html')
 
 if __name__ == '__main__':
