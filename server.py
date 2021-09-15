@@ -14,6 +14,8 @@ def update_lux():
     flag = ['vacant', 'occupied'] #flag = 0 -> vacant | flag = 1 -> occupied 
     time = request.form["time"]
     lux = request.form["lux"]
+    print(lux)
+    
     lux = str(lux)
     lux = float(lux)
     #print(type(lux))
