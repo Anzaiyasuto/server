@@ -27,10 +27,11 @@ def update_lux():
             lux = row
             print(lux)
             print(type(lux))
-        except Exception as e:
-            print(e)
-        finally:
-            f.close()
+        temp = lux
+    except Exception as e:
+        print(e)
+    finally:
+        f.close()
     print("temp " + temp )
     try:
         f = open(file_path, 'w')
