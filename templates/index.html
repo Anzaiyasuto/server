@@ -12,11 +12,17 @@
     </head>
     <body onload="updateLux('/lux', 'data')">
         <h1>トイレモニター</h1>
-        
+
         <center>
             <div id="data">test</div>
             <input type="button" value="更新" onclick="updateLux('/lux', 'data')">
+        </center><br>
+        <center>
+            <form action="/lux" method="post">
+                利用者:<input type="text" name="name" required maxlength="8"><br>
+                メッセージ:<input type="text" name="message" required maxlength="15"><br>
+                <input type="submit" value="送信">
+            </form>
         </center>
-
     </body>
 </html>
