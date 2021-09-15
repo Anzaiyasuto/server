@@ -84,8 +84,8 @@ def set_remind():
     BUFFER_SIZE = 1024
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect(('160.16.210.86', PORT))
-        
+        s.connect(('192.168.0.8', PORT))
+        print(text.encode())
         s.send(text.encode())
         print(s.recv(BUFFER_SIZE).decode())
 
