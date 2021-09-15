@@ -74,6 +74,13 @@ def get_lux():
         return lux
 
 @app.route('/remind', methods=["POST"])
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port = port_num)
+
+"""
+
 class Websocket_Server():
 
     def __init__(self, host, port):
@@ -110,5 +117,5 @@ PORT=9001 # ポートを指定
 ws_server = Websocket_Server(IP_ADDR, PORT)
 ws_server.run()
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port = port_num)
+"""
+
