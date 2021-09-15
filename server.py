@@ -17,7 +17,7 @@ def update_lux():
     lux = str(lux)
     lux = float(lux)
     print(type(lux))
-
+    print(1)
 
     
     try:
